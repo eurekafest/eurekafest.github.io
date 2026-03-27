@@ -2384,3 +2384,131 @@ SPONSORS
     font-size: 11px;
   }
 }
+/*---------------------------------------
+PRELOADER
+-----------------------------------------*/
+body.is-loading {
+  overflow: hidden;
+}
+
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 32%),
+    linear-gradient(180deg, #040404 0%, #0b0b0f 48%, #000000 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.site-preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(248, 203, 46, 0.08), transparent 18%),
+    radial-gradient(circle at 50% 50%, rgba(238, 80, 7, 0.06), transparent 28%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 2;
+  width: min(88vw, 680px);
+  text-align: center;
+  padding: 24px;
+}
+
+.preloader-kicker {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.92rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.preloader-track-wrap {
+  position: relative;
+  padding: 18px 0 8px;
+}
+
+.preloader-track {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.10);
+  overflow: visible;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 24px rgba(255, 255, 255, 0.04);
+}
+
+.preloader-track-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(248, 203, 46, 0.92) 0%, rgba(238, 80, 7, 0.95) 100%);
+  box-shadow:
+    0 0 18px rgba(248, 203, 46, 0.26),
+    0 0 26px rgba(238, 80, 7, 0.18);
+  transition: width 0.12s linear;
+}
+
+.preloader-rocket {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -56%);
+  font-size: 1.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(248, 203, 46, 0.28));
+  transition: left 0.12s linear, transform 0.12s linear;
+  will-change: left, transform;
+}
+
+.preloader-progress {
+  margin-top: 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+@media screen and (max-width: 767px) {
+  .preloader-content {
+    width: min(90vw, 420px);
+    padding: 18px;
+  }
+
+  .preloader-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    margin-bottom: 22px;
+  }
+
+  .preloader-track {
+    height: 6px;
+  }
+
+  .preloader-rocket {
+    font-size: 1.45rem;
+  }
+
+  .preloader-progress {
+    margin-top: 14px;
+    font-size: 1.7rem;
+  }
+}

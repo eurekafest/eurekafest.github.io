@@ -29,6 +29,22 @@
 </head>
 
 <body>
+    <div id="sitePreloader" class="site-preloader" aria-hidden="true">
+    <div class="preloader-bg-glow"></div>
+
+    <div class="preloader-content">
+        <div class="preloader-kicker">Teleporting you to EUREKA!</div>
+
+        <div class="preloader-track-wrap">
+            <div class="preloader-track">
+                <div class="preloader-track-fill" id="preloaderFill"></div>
+                <div class="preloader-rocket" id="preloaderRocket">🚀</div>
+            </div>
+        </div>
+
+        <div class="preloader-progress" id="preloaderProgressText">0%</div>
+    </div>
+</div>
 
 <main>
 
@@ -162,8 +178,11 @@ aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 </div>
 
 <div class="video-wrap">
-<video autoplay="" loop="" muted="" class="custom-video" poster="">
-<source src="video/astronaut.mp4" type="video/mp4">
+    <video id="heroVideo" autoplay loop muted playsinline preload="auto" class="custom-video" poster="">
+        <source src="video/astronaut.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
 
 Your browser does not support the video tag.
 </video>
@@ -178,7 +197,7 @@ Your browser does not support the video tag.
     <div class="services-info">
         <h2 class="text-white mb-4">About Eureka! 2026</h2>
 
-        <p class="text-white">Eureka! 2026 is the inaugural science fest of the School of Basic Sciences, CSJMU, Kanpur, envisioned as a large-scale academic and cultural platform bringing together science, innovation, public engagement, e-gaming, and cultural celebration.</p>
+        <p class="text-white">Eureka! 2026 is the inaugural science fest of the School of Basic Sciences, CSJMU (accredited NAAC A++), Kanpur, envisioned as a large-scale academic and cultural platform bringing together science, innovation, public engagement, e-gaming, and cultural celebration.</p>
 
         <h6 class="text-white mt-4">Once in Lifetime Experience</h6>
 
@@ -941,11 +960,6 @@ Your browser does not support the video tag.
 </div>
 </footer>
 
-<!--
-
-T e m p l a t e M o
-
--->
 
 <!-- JAVASCRIPT FILES -->
 <script src="js/jquery.min.js"></script>
@@ -1018,12 +1032,17 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+function startHeroTyping() {
   const main = document.getElementById("heroMain");
   const year = document.getElementById("heroYear");
 
+  if (!main || !year) return;
+
   const mainText = "Eureka!";
   const yearText = "2026";
+
+  main.textContent = "";
+  year.textContent = "";
 
   let i = 0;
   let j = 0;
@@ -1047,7 +1066,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   typeMain();
-});
+}
 </script>
 
 <script>
@@ -1156,7 +1175,202 @@ window.TallyConfig = {
 };
 </script>
 
-<script async src="https://tally.so/widgets/embed.js"></script>
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const body = document.body;
+    const preloader = document.getElementById('sitePreloader');
+    const fill = document.getElementById('preloaderFill');
+    const rocket = document.getElementById('preloaderRocket');
+    const progressText = document.getElementById('preloaderProgressText');
+    const heroVideo = document.getElementById('heroVideo');
+
+    if (!preloader || !fill || !rocket || !progressText) return;
+
+    body.classList.add('is-loading');
+
+    let progress = 0;
+    let videoReady = false;
+    let finished = false;
+
+    function renderProgress(value) {
+        const clamped = Math.max(0, Math.min(100, value));
+        fill.style.width = clamped + '%';
+        rocket.style.left = clamped + '%';
+        progressText.textContent = clamped + '%';
+    }
+
+    function hidePreloader() {
+        if (finished) return;
+        finished = true;
+
+        progress = 100;
+        renderProgress(progress);
+
+        setTimeout(function () {
+            preloader.classList.add('is-hidden');
+            body.classList.remove('is-loading');
+        }, 450);
+
+        setTimeout(function () {
+            preloader.remove();
+        }, 1300);
+    }
+
+    function markVideoReady() {
+        if (videoReady) return;
+        videoReady = true;
+    }
+
+    if (heroVideo) {
+        heroVideo.load();
+
+        if (heroVideo.readyState >= 3) {
+            markVideoReady();
+        } else {
+            heroVideo.addEventListener('loadeddata', markVideoReady, { once: true });
+            heroVideo.addEventListener('canplaythrough', markVideoReady, { once: true });
+        }
+    } else {
+        videoReady = true;
+    }
+
+    const startTime = performance.now();
+    const minLoaderTime = 3300;
+    const maxLoaderTime = 6500;
+
+    function animate(now) {
+        if (finished) return;
+
+        const elapsed = now - startTime;
+
+        if (!videoReady) {
+            const target = Math.min(90, Math.floor(elapsed / 28));
+            if (target > progress) progress = target;
+        } else {
+            const target = Math.min(100, progress + 3);
+            progress = target;
+        }
+
+        if (elapsed > maxLoaderTime && progress < 100) {
+            progress = 100;
+        }
+
+        renderProgress(progress);
+
+        if ((videoReady && elapsed >= minLoaderTime && progress >= 100) || elapsed > maxLoaderTime) {
+            hidePreloader();
+            return;
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    renderProgress(0);
+    requestAnimationFrame(animate);
+});
+</script>
+ -->
+
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const body = document.body;
+    const preloader = document.getElementById('sitePreloader');
+    const fill = document.getElementById('preloaderFill');
+    const rocket = document.getElementById('preloaderRocket');
+    const progressText = document.getElementById('preloaderProgressText');
+    const heroVideo = document.getElementById('heroVideo');
+
+    if (!preloader || !fill || !rocket || !progressText) {
+        if (typeof startHeroTyping === 'function') startHeroTyping();
+        return;
+    }
+
+    body.classList.add('is-loading');
+
+    let progress = 0;
+    let videoReady = false;
+    let finished = false;
+
+    function renderProgress(value) {
+        const clamped = Math.max(0, Math.min(100, value));
+        fill.style.width = clamped + '%';
+        rocket.style.left = clamped + '%';
+        progressText.textContent = clamped + '%';
+    }
+
+    function hidePreloader() {
+        if (finished) return;
+        finished = true;
+
+        progress = 100;
+        renderProgress(progress);
+
+        setTimeout(function () {
+            preloader.classList.add('is-hidden');
+            body.classList.remove('is-loading');
+
+            if (typeof startHeroTyping === 'function') {
+                startHeroTyping();
+            }
+        }, 450);
+
+        setTimeout(function () {
+            preloader.remove();
+        }, 1300);
+    }
+
+    function markVideoReady() {
+        if (videoReady) return;
+        videoReady = true;
+    }
+
+    if (heroVideo) {
+        heroVideo.load();
+
+        if (heroVideo.readyState >= 3) {
+            markVideoReady();
+        } else {
+            heroVideo.addEventListener('loadeddata', markVideoReady, { once: true });
+            heroVideo.addEventListener('canplaythrough', markVideoReady, { once: true });
+        }
+    } else {
+        videoReady = true;
+    }
+
+    const startTime = performance.now();
+    const minLoaderTime = 3200;
+    const maxLoaderTime = 6500;
+
+    function animate(now) {
+        if (finished) return;
+
+        const elapsed = now - startTime;
+
+        if (!videoReady) {
+            const target = Math.min(90, Math.floor(elapsed / 28));
+            if (target > progress) progress = target;
+        } else {
+            progress = Math.min(100, progress + 3);
+        }
+
+        if (elapsed > maxLoaderTime && progress < 100) {
+            progress = 100;
+        }
+
+        renderProgress(progress);
+
+        if ((videoReady && elapsed >= minLoaderTime && progress >= 100) || elapsed > maxLoaderTime) {
+            hidePreloader();
+            return;
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    renderProgress(0);
+    requestAnimationFrame(animate);
+});
+</script>
 </body>
 
 </html>
