@@ -1509,6 +1509,100 @@ window.TallyConfig = {
 </script>
 
 <script async src="https://tally.so/widgets/embed.js"></script>
+
+<div id="wa-popup" class="wa-popup" aria-live="polite">
+  <a
+    href="https://chat.whatsapp.com/ILPv25gqSX96EoKkN54qk4"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="wa-popup__link"
+  >
+    <span class="wa-popup__dot"></span>
+    <span>Join our WhatsApp community for announcements</span>
+  </a>
+</div>
+
+<style>
+  .wa-popup {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease,
+      visibility 220ms ease;
+    pointer-events: none;
+  }
+
+  .wa-popup.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .wa-popup__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1f2937;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid rgba(18, 140, 126, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+  }
+
+  .wa-popup__link:hover {
+    border-color: rgba(18, 140, 126, 0.35);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  }
+
+  .wa-popup__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #128C7E;
+    flex: 0 0 8px;
+  }
+
+  @media (max-width: 640px) {
+    .wa-popup {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+    }
+
+    .wa-popup__link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener('load', function () {
+    const popup = document.getElementById('wa-popup');
+
+    setTimeout(function () {
+      popup.classList.add('is-visible');
+
+      setTimeout(function () {
+        popup.classList.remove('is-visible');
+      }, 50000);
+    }, 8000);
+  });
+</script>
+
 </body>
 
 </html>
