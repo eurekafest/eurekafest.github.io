@@ -972,6 +972,8 @@ Your browser does not support the video tag.
 
 
 <footer class="site-footer">
+              
+
 <div class="site-footer-top">
 <div class="container">
 <div class="row">
@@ -1021,6 +1023,11 @@ Your browser does not support the video tag.
     <li class="site-footer-link-item">
         <a href="#" class="site-footer-link">Schedule</a>
     </li>
+
+    <div class="footer-policy-links">
+                <a href="#termsModal" class="footer-policy-btn" data-policy-open="termsModal">Terms and Conditions</a>
+                <a href="#refundModal" class="footer-policy-btn" data-policy-open="refundModal">Refund Policy</a>
+              </div>
 
 <!--     <li class="site-footer-link-item">
         <a href="#" class="site-footer-link">Pricing</a>
@@ -1603,6 +1610,87 @@ window.TallyConfig = {
   });
 </script>
 
+
+
+  <div class="policy-modal" id="termsModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+    <div class="policy-modal-dialog">
+      <div class="policy-modal-header">
+        <h4 class="policy-modal-title" id="termsModalTitle">Terms and Conditions</h4>
+        <button type="button" class="policy-modal-close" data-policy-close aria-label="Close Terms and Conditions popup">&times;</button>
+      </div>
+      <div class="policy-modal-body">
+        <h6>Participant Terms</h6>
+        <ul>
+          <li>Every participant is expected to provide accurate registration details and keep their contact information updated for all event-related communication.</li>
+          <li>Admission, access, seating, scheduling, and participation remain subject to venue rules, safety requirements, and organizer instructions.</li>
+          <li>Participants must maintain proper conduct throughout the event; any disruptive, unsafe, abusive, or unlawful behavior may lead to removal without prior notice.</li>
+          <li>Participants are responsible for their personal belongings, travel arrangements, accommodation, and timely reporting at the venue.</li>
+          <li>Photography, videography, and promotional recording may take place during the event, and participation shall be treated as consent for reasonable event documentation and publicity use.</li>
+          <li>The organizers reserve the right to refuse entry or discontinue participation in the interest of safety, compliance, discipline, or smooth event management.</li>
+        </ul>
+        <p>By registering for or attending the event, each participant acknowledges and agrees to comply with these general terms, as well as any event-specific guidelines communicated by the organizers.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="policy-modal" id="refundModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="refundModalTitle">
+    <div class="policy-modal-dialog">
+      <div class="policy-modal-header">
+        <h4 class="policy-modal-title" id="refundModalTitle">Refund Policy</h4>
+        <button type="button" class="policy-modal-close" data-policy-close aria-label="Close Refund Policy popup">&times;</button>
+      </div>
+      <div class="policy-modal-body">
+        <h6>Fees and Refunds</h6>
+        <ul>
+          <li>All registration fees, participation fees, booking amounts, and related charges are non-refundable under ordinary circumstances.</li>
+          <li>In the event of cancellation or rescheduling of the event, refunds, if any, may be considered solely as decided by the organizers and only on terms determined by them.</li>
+          <li>Any cancellation or rescheduling of the event shall be made in the interest of the organizers and event management, and such decision shall not be open to challenge or explanation to any participant or third party.</li>
+          <li>The mode, amount, timeline, adjustment, or eligibility for any refund in such special cases shall remain entirely at the discretion of the organizers.</li>
+        </ul>
+        <p>By proceeding with registration or payment, the participant confirms acceptance of this refund policy in full.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const modals = document.querySelectorAll('.policy-modal');
+      const openButtons = document.querySelectorAll('[data-policy-open]');
+      const closeModal = (modal) => {
+        if (!modal) return;
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        body.classList.remove('modal-open');
+      };
+      const openModal = (modal) => {
+        if (!modal) return;
+        modals.forEach((item) => closeModal(item));
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        body.classList.add('modal-open');
+      };
+      openButtons.forEach((button) => {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          const modal = document.getElementById(this.getAttribute('data-policy-open'));
+          openModal(modal);
+        });
+      });
+      modals.forEach((modal) => {
+        modal.addEventListener('click', function (event) {
+          if (event.target === modal || event.target.hasAttribute('data-policy-close')) {
+            closeModal(modal);
+          }
+        });
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          modals.forEach((modal) => closeModal(modal));
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
