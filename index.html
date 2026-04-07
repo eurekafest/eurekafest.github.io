@@ -27,10 +27,121 @@
 <link href="css/templatemo-festava-live.css" rel="stylesheet">
 <meta name="google-site-verification" content="KKmfsV0O996W8kP1SkgG8j8efHv0gC7j5SWkyil6h3c" />
 
+
+<style id="eureka-cancel-popup-style">
+  .eureka-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 99999;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .eureka-popup-overlay.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .eureka-popup-box {
+    width: min(760px, 100%);
+    max-height: min(86vh, 920px);
+    overflow-y: auto;
+    background: #ffffff;
+    color: #111111;
+    border-radius: 18px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    padding: 32px 28px;
+    position: relative;
+  }
+
+  .eureka-popup-tag {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #f3f3f3;
+    color: #c62828;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .eureka-popup-title {
+    margin: 0 0 18px;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.2;
+    color: #111111;
+  }
+
+  .eureka-popup-body p {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #252525;
+  }
+
+  .eureka-popup-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: #f3f3f3;
+    color: #111111;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  body.eureka-popup-open {
+    overflow: hidden;
+  }
+
+  @media (max-width: 640px) {
+    .eureka-popup-overlay {
+      padding: 16px;
+    }
+
+    .eureka-popup-box {
+      padding: 24px 18px;
+      border-radius: 14px;
+    }
+
+    .eureka-popup-title {
+      padding-right: 40px;
+    }
+  }
+</style>
+
 </head>
 
 <body>
-    <div id="sitePreloader" class="site-preloader" aria-hidden="true">
+
+<div class="eureka-popup-overlay" id="eurekaCancelPopup" role="dialog" aria-modal="true" aria-labelledby="eurekaCancelTitle">
+  <div class="eureka-popup-box">
+    <button class="eureka-popup-close" id="eurekaCancelClose" aria-label="Close popup">&times;</button>
+    <span class="eureka-popup-tag">Eureka! 2026 Update</span>
+    <h2 class="eureka-popup-title" id="eurekaCancelTitle">We are sorry!</h2>
+    <div class="eureka-popup-body">
+      <p>Due to widespread participant unavailability on 8–9 April, along with the approaching end-semester examinations and lab schedules, we regret to announce that <b>Eureka! will not be held as planned this year</b>. Unfortunately, rescheduling is not feasible under the current constraints.</p>
+      <p>We sincerely apologize for any inconvenience caused and deeply appreciate your enthusiasm and support.</p>
+      <p>All registration fees (passes and competitions) will be refunded by the end of next week. Please refer to Refund Policy on this website.</p>
+      <p>Thank you for your understanding.</p>
+      <p>Team Eureka!<br>Phir milenge.</p>
+    </div>
+  </div>
+</div>
+
+   <!--  <div id="sitePreloader" class="site-preloader" aria-hidden="true">
     <div class="preloader-bg-glow"></div>
 
     <div class="preloader-content">
@@ -45,7 +156,7 @@
 
         <div class="preloader-progress" id="preloaderProgressText">0%</div>
     </div>
-</div>
+</div> -->
 
 <main>
 
@@ -140,7 +251,7 @@ aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <div class="date-wrap">
         <h5 class="text-white">
             <i class="custom-icon bi-clock me-2"></i>
-            8 - 9, Apr 2026
+            Cancelled for this Year
         </h5>
     </div>
 
@@ -162,13 +273,13 @@ aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             </li> -->
 
             <li class="social-icon-item">
-                <a  target="blank" href="https://chat.whatsapp.com/ILPv25gqSX96EoKkN54qk4" class="social-icon-link">
+                <a  target="blank" href="#" class="social-icon-link">
                     <span class="bi-whatsapp"></span>
                 </a>
             </li>
 
             <li class="social-icon-item">
-                <a target="blank" href="https://www.instagram.com/eureka_csjmu/" class="social-icon-link">
+                <a target="blank" href="#" class="social-icon-link">
                     <span class="bi-instagram"></span>
                 </a>
             </li>
@@ -220,12 +331,12 @@ Your browser does not support the video tag.
 <div class="col-lg-6 col-12">
     <div class="about-right-panel d-flex flex-column justify-content-center h-100">
 
-        <div class="info-glass-card text-center mb-4">
+        <!-- <div class="info-glass-card text-center mb-4">
             <h3 class="text-white mb-2">Countdown to Eureka!</h3>
             <div id="eventCountdown" class="countdown-days">00 Days</div>
-        </div>
+        </div> -->
 
-        <div class="info-glass-card footfall-card">
+        <!-- <div class="info-glass-card footfall-card">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="footfall-icon-wrap me-4">
                     <i class="about-text-icon bi-person"></i>
@@ -236,7 +347,7 @@ Your browser does not support the video tag.
                     <p class="mb-0">beyond formulas, beyond fun</p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>
@@ -438,7 +549,7 @@ Your browser does not support the video tag.
 
 
 
-
+<!-- 
 <section class="artists-section section-padding" id="section_3">
   <div class="container">
     <div class="row justify-content-center">
@@ -452,7 +563,7 @@ Your browser does not support the video tag.
         </button>
 
         <div class="team-scroller" id="teamScroller">
-          <!-- Card 1 -->
+
           <article class="team-card">
             <div class="team-card-image">
               <img src="images/shayok.jpeg" alt="Team member 1">
@@ -464,7 +575,7 @@ Your browser does not support the video tag.
               <p class="team-dept">School of Basic Sciences</p>
             </div>
           </article>
-           <!-- Card 1 -->
+
           <article class="team-card">
             <div class="team-card-image">
               <img style="object-position: center 30%;" src="images/IMG_20260319_162132.jpg.jpeg" alt="Team member 1">
@@ -476,7 +587,7 @@ Your browser does not support the video tag.
               <p class="team-dept">School of Basic Sciences</p>
             </div>
           </article>
-           <!-- Card 1 -->
+
           <article class="team-card">
             <div class="team-card-image">
               <img style="object-position: center 30%;" src="images/IMG-20251124-WA0072(1).jpg.jpeg" alt="Team member 1">
@@ -487,7 +598,7 @@ Your browser does not support the video tag.
               <p class="team-dept">School of Basic Sciences</p>
             </div>
           </article>
-           <!-- Card 1 -->
+
           <article class="team-card">
             <div class="team-card-image">
               <img style="object-position: center 5%;" src="images/Shlok.jpeg" alt="Team member 1">
@@ -499,7 +610,7 @@ Your browser does not support the video tag.
             </div>
           </article>
 
-           <!-- Card 1 -->
+
           <article class="team-card">
             <div class="team-card-image">
               <img style="object-position: center 10%;" src="images/Harshit.jpeg" alt="Team member 1">
@@ -511,7 +622,7 @@ Your browser does not support the video tag.
             </div>
           </article>
 
-           <!-- Card 1 -->
+
           <article class="team-card">
             <div class="team-card-image">
               <img style="object-position: center 10%;" src="images/Gajanan.jpeg" alt="Team member 1">
@@ -523,7 +634,7 @@ Your browser does not support the video tag.
             </div>
           </article>
 
-          <!-- Card 2 -->
+
           <article class="team-card">
             <div class="team-card-image">
               <img style="object-position: center 10%;" src="images/shivani.jpg.jpeg" alt="Team member 2">
@@ -556,7 +667,7 @@ Your browser does not support the video tag.
               <p class="team-dept">School of Basic Sciences</p>
             </div>
           </article>
-           <!-- Card 1 -->
+
 
           <article class="team-card">
             <div class="team-card-image">
@@ -593,7 +704,7 @@ Your browser does not support the video tag.
             </div>
           </article>
 
-          <!-- Add more team-card blocks as needed -->
+         
         </div>
 
         <button class="team-nav team-nav-right" type="button" aria-label="Scroll right">
@@ -602,126 +713,10 @@ Your browser does not support the video tag.
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 
-<section class="schedule-section section-padding" id="section_4">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="text-white mb-4">Schedule</h2>
-
-        <div class="table-responsive">
-          <table class="schedule-table table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">8 April</th>
-                <th scope="col">9 April</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>
-                  <h3>Clash of Brains</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-                <td>
-                  <h3>Science Quiz</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-              </tr>
-
-               <tr>
-                <td>
-                  <h3>Battle Byte</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-                <td>
-                  <h3>Hogwarts Hunt</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <h3>Project Pokémon</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-                <td>
-                  <h3>Battle Byte</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-              </tr>
-
-               <tr>
-                <td>
-                  <h3>Melody Mania</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-                <td>
-                  <h3>Cosplay Couture</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <h3>Taal Tech</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-                <td>
-                  <h3>Bollywood Eve</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h3>Mudra Melodies</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-               <!--  <td>
-                  <h3>Mudra Melodies</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
- -->
-              </tr>
-
-               <tr>
-                <td>
-                  <h3>Sufi Night</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td>
-                <!-- <td>
-                  <h3>Mudra Melodies</h3>
-                  <p class="mb-2">TBA</p>
-                  <p>TBA</p>
-                </td> -->
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-
-    </div>
-  </div>
-</section>
 
 
 
@@ -985,13 +980,13 @@ Your browser does not support the video tag.
 <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
     <ul class="social-icon d-flex justify-content-lg-end">
          <li class="social-icon-item">
-                <a  target="blank" href="https://chat.whatsapp.com/ILPv25gqSX96EoKkN54qk4" class="social-icon-link">
+                <a  target="blank" href="#" class="social-icon-link">
                     <span class="bi-whatsapp"></span>
                 </a>
             </li>
 
             <li class="social-icon-item">
-                <a target="blank" href="https://www.instagram.com/eureka_csjmu/" class="social-icon-link">
+                <a target="blank" href="#" class="social-icon-link">
                     <span class="bi-instagram"></span>
                 </a>
             </li>
@@ -1044,7 +1039,7 @@ Your browser does not support the video tag.
 
 <p class="text-white d-flex mb-1">
     <a href="tel: 95326 15291" class="site-footer-link">
-        +91 95326 15291
+ 
     </a>
 </p>
 
@@ -1237,7 +1232,7 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(footfallCard);
 });
 </script>
-<script>
+<!-- <script>
 document.addEventListener("DOMContentLoaded", function () {
     const countdownEl = document.getElementById("eventCountdown");
     if (!countdownEl) return;
@@ -1259,7 +1254,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCountdown();
     setInterval(updateCountdown, 1000 * 60);
 });
-</script>
+</script> -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const scroller = document.getElementById("teamScroller");
@@ -1517,7 +1512,7 @@ window.TallyConfig = {
 
 <!-- <script async src="https://tally.so/widgets/embed.js"></script> -->
 
-<div id="wa-popup" class="wa-popup" aria-live="polite">
+<!-- <div id="wa-popup" class="wa-popup" aria-live="polite">
   <a
     href="https://chat.whatsapp.com/ILPv25gqSX96EoKkN54qk4"
     target="_blank"
@@ -1527,7 +1522,7 @@ window.TallyConfig = {
     <span class="wa-popup__dot"></span>
     <span>Join our WhatsApp community for announcements</span>
   </a>
-</div>
+</div> -->
 
 <style>
   .wa-popup {
@@ -1691,6 +1686,38 @@ window.TallyConfig = {
       });
     })();
   </script>
+
+<script id="eureka-cancel-popup-script">
+  (function () {
+    var popup = document.getElementById('eurekaCancelPopup');
+    var closeBtn = document.getElementById('eurekaCancelClose');
+    if (!popup) return;
+
+    document.body.classList.add('eureka-popup-open');
+
+    function closePopup() {
+      popup.classList.add('is-hidden');
+      document.body.classList.remove('eureka-popup-open');
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closePopup);
+    }
+
+    popup.addEventListener('click', function (event) {
+      if (event.target === popup) {
+        closePopup();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !popup.classList.contains('is-hidden')) {
+        closePopup();
+      }
+    });
+  })();
+</script>
+
 </body>
 
 </html>
